@@ -11,6 +11,9 @@ Vue.component(external.name,external);
 Vue.component(scroller.name,scroller)
 Vue.use(vant)
 new Vue({
+  created(){
+    console.log('main created...')
+  },
   router,
   store,
   render: h => h(App),

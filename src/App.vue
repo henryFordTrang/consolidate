@@ -27,6 +27,7 @@ export default {
     }
   },
   created(){
+    console.log('app created....') 
     this.$router.replace('/index')
   }
 };
