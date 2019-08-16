@@ -10,7 +10,11 @@ Vue.config.productionTip = false
 Vue.component(external.name,external);
 Vue.component(scroller.name,scroller)
 Vue.use(vant)
+router.animation='go';
 new Vue({
+  created(){
+    console.log('main created...')
+  },
   router,
   store,
   render: h => h(App),

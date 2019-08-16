@@ -6,9 +6,10 @@
       right-text="按钮"
       left-arrow
       @click-left="onClickLeft"
-      @click-right="onClickRight"/>   
+      @click-right="onClickRight"/>
     <scroller>
         <van-button type="info" @click="chop">信息按钮</van-button>
+        <div id="ed">88</div>
     </scroller>
   </external>
 </template>
@@ -16,12 +17,14 @@
 export default {
   methods: {
     chop() {
-        console.log(JSBridge,'----------------')
-        //return;
-      //this.$router.replace("/anima");
+      this.$router.animation='go';
+      this.$router.replace('/anima');
+      return;
+        cxMethod.scan()
     },
     onClickLeft(){
-
+      cxMethod.test();
+      cxMethod.exit()
     },
     onClickRight(){
 

@@ -1,13 +1,14 @@
 <template>
     <div id="app">
-        <input type="button" value="toIndex" @click="access">
+        <input type="button" value="toIndex" class="dddd" @click="access">
     </div>
 </template>
 <script>
 export default {
     methods:{
         access(){
-            this.$router.replace('/index')
+            this.$router.replace('/index');
+          cxMethod.scan()
         }
     }
 }

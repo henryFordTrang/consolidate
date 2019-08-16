@@ -12,26 +12,32 @@
     </transition>
   </div>
 </template>
-
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "app",
-  components: {
-    HelloWorld
-  },
   data(){
     return{
       tranInout:'slide-left',
     }
   },
+  watch:{
+    $route(){
+      //console.log('---------------------------turning to other page----------',this.$route)
+      switch(this.$router.animation){
+        case 'go':this.tranInout='slide-left';
+        break;
+        case 'back':this.tranInout='slide-right';
+        break;
+      }
+
+    }
+  },
   created(){
+    console.log('app created....')
     this.$router.replace('/index')
   }
 };
 </script>
-
 <style>
 /* #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
