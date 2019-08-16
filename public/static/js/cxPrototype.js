@@ -15,5 +15,6 @@
         var cmd = "CLIENT_TOOLBAR_TYPE";
         B.postNotification(cmd, option);
     }
-    W['cxMethod']=new cxMethod();  
+  cxMethod.prototype.test=function(){alert(11)}
+    W['cxMethod']=new cxMethod();
 })(window,jQuery,jsBridge)

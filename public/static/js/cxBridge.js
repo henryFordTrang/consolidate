@@ -8,6 +8,7 @@
 //
 
 (function (context) {
+  try {
     function bridgeCall (src, callback) {
       iframe = document.createElement("iframe");
       iframe.style.display = "none";
@@ -22,7 +23,6 @@
       iframe.onload = cleanFn;
       document.documentElement.appendChild(iframe);
     }
-  
     function JSBridge () {
       var u = navigator.userAgent;
       if (u.indexOf("Android") > -1 || u.indexOf("Linux") > -1) { //安卓手机
@@ -33,13 +33,12 @@
       this.callbackDict = {};
       this.notificationIdCount = 0;
       this.notificationDict = {};
-  
+
       var that = this;
       context.document.addEventListener("DOMContentLoaded", function () {
         bridgeCall("jsbridge://NotificationReady", that.trigger("jsBridgeReady", {}));
       }, false);
     }
-  
     JSBridge.prototype = {
       constructor: JSBridge,
       //send notification to WebView
@@ -48,12 +47,12 @@
           androidjsbridge.postNotification(name, JSON.stringify(userInfo));
         } else {
           this.notificationIdCount++;
-  
+
           this.notificationDict[this.notificationIdCount] = {
             name: name,
             userInfo: userInfo
           };
-  
+
           bridgeCall("jsbridge://PostNotificationWithId-" + this.notificationIdCount);
         }
       },
@@ -67,7 +66,7 @@
       trigger: function (name, userInfo) {
         if (this.callbackDict[name]) {
           var callList = this.callbackDict[name];
-  
+
           for (var i = 0, len = callList.length; i < len; i++) {
             callList[i](userInfo);
           }
@@ -94,7 +93,7 @@
         } else if (arguments.length > 1) {
           if (this.callbackDict[name]) {
             var callList = this.callbackDict[name];
-  
+
             for (var i = 0, len = callList.length; i < len; i++) {
               if (callList[i] == callback) {
                 callList.splice(i, 1);
@@ -108,8 +107,9 @@
         }
       }
     };
-  
+  }catch(error){
+
+  }
+
     context.jsBridge = new JSBridge();
-  
   })(window);
-  
