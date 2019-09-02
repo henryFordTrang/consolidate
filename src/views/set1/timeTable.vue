@@ -117,7 +117,8 @@
                     :class="item.jcdm=='nap'?'dspFlex':''"
                   >
                     <!-- 星期一 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="monSet[index]&&monSet[index].jc?'background-color:'+colorM.get(monSet[index].kcdm):''">
+                    <!-- <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="monSet[index]&&monSet[index].jc?'background-color:'+colorM.get(monSet[index].kcdm):''"> -->
+                    <td class="courseTd" :class="computCc(item.jcdm,monSet[index])" :rowspan="monSet[index]?computRs(monSet[index]):1" :style="monSet[index]&&monSet[index].jc?'background-color:'+colorM.get(monSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
                           <!-- <span class="couseContent">{{monSet[index+1>napIndex?index-1:index]&&monSet[index+1>napIndex?index-1:index].kcmc?monSet[index+1>napIndex?index-1:index].kcmc:index}}1111</span> -->
@@ -148,10 +149,11 @@
                       </div>
                     </td>
                     <!-- 星期二 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="tueSet[index+1>napIndex?index-1:index]&&tueSet[index+1>napIndex?index-1:index].kcmc?'background-color:'+colorM.get(tueSet[index+1>napIndex?index-1:index].kcdm):''">
+                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="tueSet[index]&&tueSet[index].jc?'background-color:'+colorM.get(tueSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
-                          <span class="couseContent">{{tueSet[index+1>napIndex?index-1:index]&&tueSet[index+1>napIndex?index-1:index].kcmc?tueSet[index+1>napIndex?index-1:index].kcmc:''}}</span>
+                          <!-- <span class="couseContent">{{tueSet[index+1>napIndex?index-1:index]&&tueSet[index+1>napIndex?index-1:index].kcmc?tueSet[index+1>napIndex?index-1:index].kcmc:''}}</span> -->
+                          <span class="couseContent">{{tueSet[index]&&tueSet[index].jc?tueSet[index].kcmc:''}}</span>
                         </div>
                         <div class="addition">
                           <div class="location">
@@ -162,7 +164,7 @@
                                 class="img"
                               />
                             </div>
-                            <div class="spec">{{tueSet[index+1>napIndex?index-1:index]&&tueSet[index+1>napIndex?index-1:index].skbjmc?tueSet[index+1>napIndex?index-1:index].skbjmc:''}}</div>
+                            <div class="spec">{{tueSet[index]&&tueSet[index].jc?tueSet[index].skbjmc:''}}</div>
                           </div>
                           <div class="location">
                             <div class="icon">
@@ -172,16 +174,16 @@
                                 class="img1"
                               />
                             </div>
-                            <div class="spec">{{tueSet[index+1>napIndex?index-1:index]&&tueSet[index+1>napIndex?index-1:index].skjsxm?tueSet[index+1>napIndex?index-1:index].skjsxm:''}}</div>
+                            <div class="spec">{{tueSet[index]&&tueSet[index].jc?tueSet[index].skjsxm:''}}</div>
                           </div>
                         </div>
                       </div>
                     </td>
                     <!-- 星期三 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="wenSet[index+1>napIndex?index-1:index]&&wenSet[index+1>napIndex?index-1:index].kcmc?'background-color:'+colorM.get(wenSet[index+1>napIndex?index-1:index].kcdm):''">
+                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="wenSet[index]&&wenSet[index].jc?'background-color:'+colorM.get(wenSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
-                          <span class="couseContent">{{wenSet[index+1>napIndex?index-1:index]&&wenSet[index+1>napIndex?index-1:index].kcmc?wenSet[index+1>napIndex?index-1:index].kcmc:''}}</span>
+                          <span class="couseContent">{{wenSet[index]&&tueSet[index].jc?wenSet[index].kcmc:''}}</span>
                         </div>
                         <div class="addition">
                           <div class="location">
@@ -192,7 +194,7 @@
                                 class="img"
                               />
                             </div>
-                            <div class="spec">{{wenSet[index+1>napIndex?index-1:index]&&wenSet[index+1>napIndex?index-1:index].skbjmc?wenSet[index+1>napIndex?index-1:index].skbjmc:''}}</div>
+                            <div class="spec">{{wenSet[index]&&tueSet[index].jc?wenSet[index].skbjmc:''}}</div>
                           </div>
                           <div class="location">
                             <div class="icon">
@@ -202,16 +204,16 @@
                                 class="img1"
                               />
                             </div>
-                            <div class="spec">{{wenSet[index+1>napIndex?index-1:index]&&wenSet[index+1>napIndex?index-1:index].skjsxm?wenSet[index+1>napIndex?index-1:index].skjsxm:''}}</div>
+                            <div class="spec">{{wenSet[index]&&tueSet[index].jc?wenSet[index].skjsxm:''}}</div>
                           </div>
                         </div>
                       </div>
                     </td>
                     <!-- 星期四 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="thiSet[index+1>napIndex?index-1:index]&&thiSet[index+1>napIndex?index-1:index].kcmc?'background-color:'+colorM.get(thiSet[index+1>napIndex?index-1:index].kcdm):''">
+                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="thiSet[index]&&thiSet[index].jc?'background-color:'+colorM.get(thiSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
-                          <span class="couseContent">{{thiSet[index+1>napIndex?index-1:index]&&thiSet[index+1>napIndex?index-1:index].kcmc?thiSet[index+1>napIndex?index-1:index].kcmc:''}}</span>
+                          <span class="couseContent">{{thiSet[index]&&tueSet[index].jc?thiSet[index].kcmc:''}}</span>
                         </div>
                         <div class="addition">
                           <div class="location">
@@ -222,7 +224,7 @@
                                 class="img"
                               />
                             </div>
-                            <div class="spec">{{thiSet[index+1>napIndex?index-1:index]&&thiSet[index+1>napIndex?index-1:index].skbjmc?thiSet[index+1>napIndex?index-1:index].skbjmc:''}}</div>
+                            <div class="spec">{{thiSet[index]&&tueSet[index].jc?thiSet[index].skbjmc:''}}</div>
                           </div>
                           <div class="location">
                             <div class="icon">
@@ -232,16 +234,16 @@
                                 class="img1"
                               />
                             </div>
-                            <div class="spec">{{thiSet[index+1>napIndex?index-1:index]&&thiSet[index+1>napIndex?index-1:index].skjsxm?thiSet[index+1>napIndex?index-1:index].skjsxm:''}}</div>
+                            <div class="spec">{{thiSet[index]&&tueSet[index].jc?thiSet[index].skjsxm:''}}</div>
                           </div>
                         </div>
                       </div>
                     </td>
                     <!-- 星期五 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="friSet[index+1>napIndex?index-1:index]&&friSet[index+1>napIndex?index-1:index].kcmc?'background-color:'+colorM.get(friSet[index+1>napIndex?index-1:index].kcdm):''">
+                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="friSet[index]&&friSet[index].jc?'background-color:'+colorM.get(friSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
-                          <span class="couseContent">{{friSet[index+1>napIndex?index-1:index]&&friSet[index+1>napIndex?index-1:index].kcmc?friSet[index+1>napIndex?index-1:index].kcmc:''}}</span>
+                          <span class="couseContent">{{friSet[index]&&friSet[index].jc?friSet[index].kcmc:''}}</span>
                         </div>
                         <div class="addition">
                           <div class="location">
@@ -252,7 +254,7 @@
                                 class="img"
                               />
                             </div>
-                            <div class="spec">{{friSet[index+1>napIndex?index-1:index]&&friSet[index+1>napIndex?index-1:index].skbjmc?friSet[index+1>napIndex?index-1:index].skbjmc:''}}</div>
+                            <div class="spec">{{friSet[index]&&friSet[index].jc?friSet[index].skbjmc:''}}</div>
                           </div>
                           <div class="location">
                             <div class="icon">
@@ -262,16 +264,16 @@
                                 class="img1"
                               />
                             </div>
-                            <div class="spec">{{friSet[index+1>napIndex?index-1:index]&&friSet[index+1>napIndex?index-1:index].skjsxm?friSet[index+1>napIndex?index-1:index].skjsxm:''}}</div>
+                            <div class="spec">{{friSet[index]&&friSet[index].jc?friSet[index].skjsxm:''}}</div>
                           </div>
                         </div>
                       </div>
                     </td>
                     <!-- 星期六 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="satSet[index+1>napIndex?index-1:index]&&satSet[index+1>napIndex?index-1:index].kcmc?'background-color:'+colorM.get(satSet[index+1>napIndex?index-1:index].kcdm):''">
-                      <div class="courseInnerWra" v-if="item.jcdm!='nap'">
+                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="satSet[index]&&satSet[index].jc?'background-color:'+colorM.get(satSet[index].kcdm):''">
+                      <div class="courseInnerWra" v-if="item.jcdm!='nap'&&satSet[index]&&satSet[index].jc">
                         <div class="courseName">
-                          <span class="couseContent">{{satSet[index+1>napIndex?index-1:index]&&satSet[index+1>napIndex?index-1:index].kcmc?satSet[index+1>napIndex?index-1:index].kcmc:''}}</span>
+                          <span class="couseContent">{{satSet[index]&&satSet[index].jc?satSet[index].kcmc:''}}</span>
                         </div>
                         <div class="addition">
                           <div class="location">
@@ -282,7 +284,7 @@
                                 class="img"
                               />
                             </div>
-                            <div class="spec">{{satSet[index+1>napIndex?index-1:index]&&satSet[index+1>napIndex?index-1:index].skbjmc?satSet[index+1>napIndex?index-1:index].skbjmc:''}}</div>
+                            <div class="spec">{{satSet[index]&&satSet[index].jc?satSet[index].skbjmc:''}}</div>
                           </div>
                           <div class="location">
                             <div class="icon">
@@ -292,16 +294,16 @@
                                 class="img1"
                               />
                             </div>
-                            <div class="spec">{{satSet[index+1>napIndex?index-1:index]&&satSet[index+1>napIndex?index-1:index].skjsxm?satSet[index+1>napIndex?index-1:index].skjsxm:''}}</div>
+                            <div class="spec">{{satSet[index]&&satSet[index].jc?satSet[index].skjsxm:''}}</div>
                           </div>
                         </div>
                       </div>
                     </td>
                     <!-- 星期天 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="sunSet[index+1>napIndex?index-1:index]&&sunSet[index+1>napIndex?index-1:index].kcmc?'background-color:'+colorM.get(sunSet[index+1>napIndex?index-1:index].kcdm):''">
-                      <div class="courseInnerWra" v-if="item.jcdm!='nap'&&sunSet[index+1>napIndex?index-1:index]&&sunSet[index+1>napIndex?index-1:index].kcmc">
+                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="sunSet[index]&&sunSet[index].jc?'background-color:'+colorM.get(sunSet[index].kcdm):''">
+                      <div class="courseInnerWra" v-if="item.jcdm!='nap'&&sunSet[index]&&sunSet[index].jc">
                         <div class="courseName">
-                          <span class="couseContent">{{sunSet[index+1>napIndex?index-1:index]&&sunSet[index+1>napIndex?index-1:index].kcmc?sunSet[index+1>napIndex?index-1:index].kcmc:''}}</span>
+                          <span class="couseContent">{{sunSet[index]&&sunSet[index].jc?sunSet[index].kcmc:''}}</span>
                         </div>
                         <div class="addition">
                           <div class="location">
@@ -312,7 +314,7 @@
                                 class="img"
                               />
                             </div>
-                            <div class="spec">{{sunSet[index+1>napIndex?index-1:index]&&sunSet[index+1>napIndex?index-1:index].skbjmc?sunSet[index+1>napIndex?index-1:index].skbjmc:''}}</div>
+                            <div class="spec">{{sunSet[index]&&sunSet[index].jc?sunSet[index].skbjmc:''}}</div>
                           </div>
                           <div class="location">
                             <div class="icon">
@@ -322,7 +324,7 @@
                                 class="img1"
                               />
                             </div>
-                            <div class="spec">{{sunSet[index+1>napIndex?index-1:index]&&sunSet[index+1>napIndex?index-1:index].skjsxm?sunSet[index+1>napIndex?index-1:index].skjsxm:''}}</div>
+                            <div class="spec">{{sunSet[index]&&sunSet[index].jc?sunSet[index].skjsxm:''}}</div>
                           </div>
                         </div>
                       </div>
@@ -515,7 +517,132 @@ export default {
             //if (rsp.data.kcInfo.data && rsp.data.kcInfo.data.length > 0) {
               _this.courseList = rsp.data.kcInfo.data;
               var testParam =
-                '[{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":40,"kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":40,"kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-09-01","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学","skcddm":"1011"}]';
+                '[{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"SX","skjs":"10086110","skbj":"1101", "skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":40,"kcmc":"数学","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":41,"kcmc":"英语","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-27",\
+                "kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班",\
+                "jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"DL1","skjs":"10086110",\
+                "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班",\
+                "skrq":"2019-08-27","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5",\
+                "jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"YW","skjs":"10086110","skbj":"1101",\
+                "skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27",\
+                "kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,\
+                "kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                "skbjmc":"一年五班","jc":"1","jxrwid":40,"kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"YY","skjs":"10086110",\
+                "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28",\
+                "kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4",\
+                "jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                "skbjmc":"一年五班","jc":"5","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"SW1","skjs":"10086110",\
+                "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28",\
+                "kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":2752,\
+                "kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                "skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"HX2","skjs":"10086110",\
+                "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29",\
+                "kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4",\
+                "jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"SW1","skjs":"10086110","skbj":"1101",\
+                "skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29",\
+                "kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,\
+                "kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                "skbjmc":"一年五班","jc":"8","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"DL1","skjs":"10086110",\
+                "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30",\
+                "kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2749,\
+                "kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班",\
+                "jc":"4","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                "skbjmc":"一年五班","jc":"5","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"LS","skjs":"10086110",\
+                "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30",\
+                "kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":39,"kcmc":"语文",\
+                "skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班",\
+                "jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"HX2","skjs":"10086110","skbj":"1101",\
+                "skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"DL1",\
+                "skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班",\
+                "skrq":"2019-08-31","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5",\
+                "jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                "skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YW","skjs":"10086110",\
+                "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31",\
+                "kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-09-01","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学",\
+                "skcddm":"1011"}]';
+
+                // var testParam =
+                // '[{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班",\
+                // "jc":"1","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"SX","skjs":"10086110","skbj":"1101",\
+                // "skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":40,"kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26",\
+                // "kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":41,"kcmc":"英语","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4",\
+                // "jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"DL1","skjs":"10086110","skbj":"1101",\
+                // "skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26",\
+                // "kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7",\
+                // "jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101",\
+                // "skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27",\
+                // "kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班",\
+                // "jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"DL1","skjs":"10086110",\
+                // "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班",\
+                // "skrq":"2019-08-27","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5",\
+                // "jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"YW","skjs":"10086110","skbj":"1101",\
+                // "skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-27",\
+                // "kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-27","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,\
+                // "kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                // "skbjmc":"一年五班","jc":"1","jxrwid":40,"kcmc":"数学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"YY","skjs":"10086110",\
+                // "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28",\
+                // "kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4",\
+                // "jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                // "skbjmc":"一年五班","jc":"5","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"SW1","skjs":"10086110",\
+                // "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-28",\
+                // "kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-28","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":2752,\
+                // "kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                // "skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"HX2","skjs":"10086110",\
+                // "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29",\
+                // "kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4",\
+                // "jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"SW1","skjs":"10086110","skbj":"1101",\
+                // "skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29",\
+                // "kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,\
+                // "kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-29","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                // "skbjmc":"一年五班","jc":"8","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"DL1","skjs":"10086110",\
+                // "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30",\
+                // "kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2749,\
+                // "kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班",\
+                // "jc":"4","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                // "skbjmc":"一年五班","jc":"5","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"LS","skjs":"10086110",\
+                // "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":30,"kcmc":"历史","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-30",\
+                // "kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-30","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":39,"kcmc":"语文",\
+                // "skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班",\
+                // "jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"HX2","skjs":"10086110","skbj":"1101",\
+                // "skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"DL1",\
+                // "skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},{"skcdmc":"一年五班",\
+                // "skrq":"2019-08-31","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5",\
+                // "jxrwid":2749,"kcmc":"生物","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师",\
+                // "skbjmc":"一年五班","jc":"6","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31","kcdm":"YW","skjs":"10086110",\
+                // "skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":39,"kcmc":"语文","skcddm":"1011"},{"skcdmc":"一年五班","skrq":"2019-08-31",\
+                // "kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学","skcddm":"1011"},\
+                // {"skcdmc":"一年五班","skrq":"2019-09-01","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学",\
+                // "skcddm":"1011"}]';
 
               testParam = $.parseJSON(testParam);
               _this.courseList = testParam;
@@ -597,6 +724,14 @@ export default {
                     break;
                 }
               });
+              //去重
+              _this.duplicate(_this.monSet);
+              _this.duplicate(_this.tueSet);
+              _this.duplicate(_this.wenSet);
+              _this.duplicate(_this.thiSet);
+               _this.duplicate(_this.friSet);
+              _this.duplicate(_this.satSet);
+              _this.duplicate(_this.sunSet);
              console.log(JSON.stringify(_this.monSet),'after.......')
               //假如午休
             // } else {
@@ -610,6 +745,212 @@ export default {
         }
       });
     },
+    //合并相同元素
+      duplicate(list) {
+        var _this = this;
+        //console.log('before:',JSON.stringify(list))
+        var rmNap=false;
+        var temp = [];
+        var newList = [];
+        list.forEach(function(dom, i) {
+          if (temp.indexOf(dom.kcdm) == -1) {
+            //console.log(temp.indexOf(dom.kcdm),dom.kcdm,'===')
+            //没重复
+            temp.push(dom.kcdm);
+            newList.push(dom);
+          } else {
+            //重复数据--连续或不间断
+
+            if (!list[i].kcmc) {
+              //没课的时候，重复空白
+              return;
+            }
+
+            //console.log("出现重复", i, list[i].kcmc,'----');
+            //console.log(JSON.stringify(list))
+            var napCount = false;
+            var repeat = [];
+            var repeat1 = [];
+            var count = 0;
+
+            list.forEach(function(dom1, i1) {
+              //判断是否连续
+              //console.log(i1,'---',list.length)
+              if (dom1.kcdm == dom.kcdm) {
+
+                //不连续,检查是否因为午休而不连续
+                //console.log(dom.kcmc,'conn1ected',dom.jc,dom1.jc)
+                count++;
+                repeat.push(i1);
+                repeat1.push(i1);
+                var lastIndex=list.length-1;
+                //最后一个不会自动触发----触发最后一个数组
+                if(repeat1.length>1&&repeat1.indexOf(lastIndex)>-1){
+                  //console.log('----',repeat1);
+                  if(repeat1[0]<_this.napIndex&&repeat1[repeat1.length-1]>_this.napIndex){
+                    //跨午休
+                    rmNap=true;
+                    var jc='';
+                    repeat1.push(_this.napIndex);
+                    repeat1=_this.order(repeat1);
+                    //console.log(_this.ifConstant(repeat1),'***** nap')
+                    if(!_this.ifConstant(repeat1)){
+                      return;
+                    }
+                    repeat1.forEach((reItem,reIndex)=>{
+                      //console.log(list[reItem].jc,'---',list[reItem].kcmc)
+                      jc+=reItem+','
+                      if(reIndex>0){
+                        list[reItem].conceal=true;
+                      }
+                    })
+                    jc=jc.substring(0,jc.length-1);
+                    if(list[repeat1[0]]&&list[repeat1[0]].jc){
+                      list[repeat1[0]].jc=jc;
+                    }
+                  }else{
+                    //不函午休
+                    repeat1=_this.order(repeat1);
+                    console.log(_this.ifConstant(repeat1),'no ***** nap')
+                    if(!_this.ifConstant(repeat1)){
+                      return;
+                    }
+                    var jc='';
+                    repeat1.forEach((reItem,reIndex)=>{
+                      jc+=reItem+','
+                      if(reIndex>0){
+                        list[reItem].conceal=true;
+                      }
+                    })
+                    jc=jc.substring(0,jc.length-1);
+                    if(list[repeat1[0]]&&list[repeat1[0]].jc){
+                      list[repeat1[0]].jc=jc;
+                    }
+                  }
+                }
+               //最后一个数组触发完成
+
+              } else {
+                //console.log('repeat',repeat,'count',count)
+                if (count > 0 &&dom1.kcdm == "nap" &&_this.napIndex > 0 &&_this.napIndex < list.length - 1 &&list[i1 + 1].kcdm == dom.kcdm) {
+                  //不连续,查看是否因为午休中断,如果当前是午休且下一个元素是连续的,就继续count++  morning--afternoon
+                  count++;
+                  napCount = true;
+                  //console.log('nap','dom.jc',dom.jc,'dom1.jc',dom1.jc,'dom1.kcmc',dom1.kcmc,'dom.kcmc',dom.kcmc,'count',count)
+                } else if(count>0){
+                  //console.log('clear','dom.jc',dom.jc,'dom1.jc',dom1.jc,'dom1.kcmc',dom1.kcmc,'dom.kcmc',dom.kcmc,'count',count,'repeat',JSON.stringify(repeat),'repeat1',JSON.stringify(repeat1),'i:',i,'nap',napCount)
+                  //console.log(repeat1)
+                  if(repeat1.length==1&&repeat1[0]>0){//和上一节课对比 有时候相隔1个或多个重复
+                    var testIndex=repeat1[0];
+                    var priorIndex=testIndex-1;
+                    //console.log(repeat1,testIndex,'===',priorIndex)
+                    if(list[priorIndex].kcdm!='nap'&&list[priorIndex].kcdm!=list[testIndex].kcdm){
+                      count = 0;
+                      repeat1=[];
+                      return;
+
+                    }
+                  }
+
+                  if(napCount){//有跨午休的
+                     rmNap=true;
+                     var jc='';
+                     repeat1.push(_this.napIndex);
+                     repeat1=_this.order(repeat1);
+                     repeat1.forEach((reItem,reIndex)=>{
+                       //console.log(list[reItem].jc,'---',list[reItem].kcmc)
+                       jc+=reItem+','
+                       if(reIndex>0){
+                         list[reItem].conceal=true;
+                       }
+                     })
+                     jc=jc.substring(0,jc.length-1);
+                     if(list[repeat1[0]]&&list[repeat1[0]].jc){
+                       list[repeat1[0]].jc=jc;
+                     }
+                  }else{//没午休
+                    var jc='';
+                     repeat1.forEach((reItem,reIndex)=>{
+                        jc+=reItem+','
+                        if(reIndex>0){
+                          list[reItem].conceal=true;
+                        }
+                     })
+                     jc=jc.substring(0,jc.length-1);
+                     if(list[repeat1[0]]&&list[repeat1[0]].jc){
+                       list[repeat1[0]].jc=jc;
+                     }
+                  }
+                  //console.log('repeat1 清空',repeat1)
+                  count = 0;
+                  repeat1=[];
+                }
+              }
+            });
+          }
+        });
+        if(rmNap){
+          _this.hideNap++;
+        }
+      },
+     //数组排序
+      order(arr){
+          var len=arr.length;
+          var max=0; // 定义一个变量max,用于保存数组中的最大值。
+          var num=0; // 定义一个变量num,用于保存数组中最大值的位置。
+          var mid=0; // 定义一个变量mid,用于交换最大值和最后一个值。
+          for(var i=len-1;i>0;i--){
+              max=arr[0];
+              for(var j=0;j<=i;j++){
+                  if(max<=arr[j]){
+                      max=arr[j]; // 获取数组中最大值
+                      num=j;
+                  }
+              }
+              mid=arr[i]; // 将数组最后一个元素的值赋给中间变量；
+              arr[num]=mid; // 将中间变量赋给最大值的元素；
+              arr[i]=max; // 将最大值赋给数组最后一个元素；
+          }
+          return arr;
+      },
+       //判断数组是否连续
+      ifConstant(a){
+        a.sort();
+        var b=[];
+        for(var i=a[0];i<=a[a.length-1];i++)
+        {
+          b.push(i);
+        }
+
+        if(a.toString()===b.toString()){
+          return true
+        }
+        else{
+          return false
+        }
+      },
+     //隐藏td
+      computCc(ifNap,obj) {
+        if(ifNap=='nap'&&obj.conceal){
+          return 'courseNap conceal';
+        }else if(ifNap=='nap'&&!obj.conceal){
+          return "courseNap";
+        }else if(ifNap!='nap'&&obj.conceal){
+          return 'conceal'
+        }else if(ifNap!='nap'&&!obj.conceal){
+          return '';
+        }
+      },
+      //合并td
+      computRs(obj) {
+        var series = obj.jc;
+        if (obj.jc.length > 1) {
+          series = series.split(",");
+          return series.length;
+        } else {
+          return 1;
+        }
+      },
     //解析课程名称
     computeCouse(day,seri){
       var _this=this;
@@ -866,11 +1207,6 @@ table.courseTable {
   width: 457px;
   height: auto;
 }
-td.courseTd {
-  width: 61px !important;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-}
 .courseNap {
   height: 10px !important;
 }
@@ -953,13 +1289,20 @@ td.nap {
   border-top: 5px solid white;
   border-bottom: 5px solid white;
 }
-td.firstCol,
-td.courseTd {
+td.firstCol{
   display: inline-block;
   width: 43px;
+  height: 103px;
+  border-spacing: 10px 2px;
+  margin: 5px 0;
+}
+
+td.courseTd {
   height: 113px;
   border-spacing: 10px 2px;
   margin: 5px 0;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 td.firstCol .subWra {
   width: 43px;
@@ -1010,4 +1353,7 @@ thead td {
   border-radius: 3px;
   border: 1px solid white;
 }
+.conceal {
+    display: none ! important;
+  }
 </style>
