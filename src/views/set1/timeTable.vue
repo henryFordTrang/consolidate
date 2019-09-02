@@ -118,7 +118,7 @@
                   >
                     <!-- 星期一 -->
                     <!-- <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="monSet[index]&&monSet[index].jc?'background-color:'+colorM.get(monSet[index].kcdm):''"> -->
-                    <td class="courseTd" :class="computCc(item.jcdm,monSet[index])" :rowspan="monSet[index]?computRs(monSet[index]):1" :style="monSet[index]&&monSet[index].jc?'background-color:'+colorM.get(monSet[index].kcdm):''">
+                    <td class="courseTd" :class="computCc(item.jcdm,monSet[index])" :rowspan="monSet[index]&&monSet[index].jc?computRs(monSet[index]):1" :style="monSet[index]&&monSet[index].jc?'background-color:'+colorM.get(monSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
                           <!-- <span class="couseContent">{{monSet[index+1>napIndex?index-1:index]&&monSet[index+1>napIndex?index-1:index].kcmc?monSet[index+1>napIndex?index-1:index].kcmc:index}}1111</span> -->
@@ -149,7 +149,7 @@
                       </div>
                     </td>
                     <!-- 星期二 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="tueSet[index]&&tueSet[index].jc?'background-color:'+colorM.get(tueSet[index].kcdm):''">
+                    <td class="courseTd" :class="computCc(item.jcdm,tueSet[index])" :rowspan="tueSet[index]&&tueSet[index].jc?computRs(tueSet[index]):1" :style="tueSet[index]&&tueSet[index].jc?'background-color:'+colorM.get(tueSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
                           <!-- <span class="couseContent">{{tueSet[index+1>napIndex?index-1:index]&&tueSet[index+1>napIndex?index-1:index].kcmc?tueSet[index+1>napIndex?index-1:index].kcmc:''}}</span> -->
@@ -180,7 +180,7 @@
                       </div>
                     </td>
                     <!-- 星期三 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="wenSet[index]&&wenSet[index].jc?'background-color:'+colorM.get(wenSet[index].kcdm):''">
+                    <td class="courseTd" :class="computCc(item.jcdm,wenSet[index])" :rowspan="wenSet[index]&&wenSet[index].jc?computRs(wenSet[index]):1" :style="wenSet[index]&&wenSet[index].jc?'background-color:'+colorM.get(wenSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
                           <span class="couseContent">{{wenSet[index]&&tueSet[index].jc?wenSet[index].kcmc:''}}</span>
@@ -210,7 +210,7 @@
                       </div>
                     </td>
                     <!-- 星期四 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="thiSet[index]&&thiSet[index].jc?'background-color:'+colorM.get(thiSet[index].kcdm):''">
+                    <td class="courseTd" :class="computCc(item.jcdm,thiSet[index])" :rowspan="thiSet[index]&&thiSet[index].jc?computRs(thiSet[index]):1" :style="thiSet[index]&&thiSet[index].jc?'background-color:'+colorM.get(thiSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
                           <span class="couseContent">{{thiSet[index]&&tueSet[index].jc?thiSet[index].kcmc:''}}</span>
@@ -240,7 +240,7 @@
                       </div>
                     </td>
                     <!-- 星期五 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="friSet[index]&&friSet[index].jc?'background-color:'+colorM.get(friSet[index].kcdm):''">
+                    <td class="courseTd" :class="computCc(item.jcdm,friSet[index])" :rowspan="friSet[index]&&friSet[index].jc?computRs(friSet[index]):1" :style="friSet[index]&&friSet[index].jc?'background-color:'+colorM.get(friSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'">
                         <div class="courseName">
                           <span class="couseContent">{{friSet[index]&&friSet[index].jc?friSet[index].kcmc:''}}</span>
@@ -270,7 +270,7 @@
                       </div>
                     </td>
                     <!-- 星期六 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="satSet[index]&&satSet[index].jc?'background-color:'+colorM.get(satSet[index].kcdm):''">
+                    <td class="courseTd" :class="computCc(item.jcdm,satSet[index])" :rowspan="satSet[index]&&satSet[index].jc?computRs(satSet[index]):1" :style="satSet[index]&&satSet[index].jc?'background-color:'+colorM.get(satSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'&&satSet[index]&&satSet[index].jc">
                         <div class="courseName">
                           <span class="couseContent">{{satSet[index]&&satSet[index].jc?satSet[index].kcmc:''}}</span>
@@ -300,7 +300,7 @@
                       </div>
                     </td>
                     <!-- 星期天 -->
-                    <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="sunSet[index]&&sunSet[index].jc?'background-color:'+colorM.get(sunSet[index].kcdm):''">
+                    <td class="courseTd" :class="computCc(item.jcdm,sunSet[index])" :rowspan="sunSet[index]&&sunSet[index].jc?computRs(sunSet[index]):1" :style="sunSet[index]&&sunSet[index].jc?'background-color:'+colorM.get(sunSet[index].kcdm):''">
                       <div class="courseInnerWra" v-if="item.jcdm!='nap'&&sunSet[index]&&sunSet[index].jc">
                         <div class="courseName">
                           <span class="couseContent">{{sunSet[index]&&sunSet[index].jc?sunSet[index].kcmc:''}}</span>
@@ -643,10 +643,8 @@ export default {
                 // "kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学","skcddm":"1011"},\
                 // {"skcdmc":"一年五班","skrq":"2019-09-01","kcdm":"SX","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":40,"kcmc":"数学",\
                 // "skcddm":"1011"}]';
-
               testParam = $.parseJSON(testParam);
-              _this.courseList = testParam;
-               
+              _this.courseList = testParam;              
               //每个课程配一个颜色
               var count=0;
               _this.courseList.forEach((colorItem,colorIndex)=>{
@@ -654,8 +652,7 @@ export default {
                 if(!_this.colorM.has(colorItem.kcdm)){
                   _this.colorM.set(colorItem.kcdm, _this.colorSet[count]);
                 }
-              })
-              console.log(JSON.stringify(_this.monSet));    
+              }) 
               //每周7天,每天1个集合
               _this.courseList.forEach((courseItem, courseIndex) => {
                 switch (new Date(courseItem.skrq.replace(/-/g, "/")).getDay()) {
@@ -731,8 +728,7 @@ export default {
               _this.duplicate(_this.thiSet);
                _this.duplicate(_this.friSet);
               _this.duplicate(_this.satSet);
-              _this.duplicate(_this.sunSet);
-             console.log(JSON.stringify(_this.monSet),'after.......')
+              _this.duplicate(_this.sunSet);            
               //假如午休
             // } else {
             //   _this.$toast("没有课程信息");
@@ -1038,6 +1034,9 @@ export default {
     var _this = this;
     _this.weekSpanCal();
     _this.loadCourse();
+    //计算并设置高度
+    var contentH=$(window).height()-$('.van-nav-bar').height()-$('.weekSwit').height()-$('.van-nav-bar').offset().top+'px';
+    $('.wrapper').css('height',contentH)
     var right_div2 = document.getElementById("rightLow");
     right_div2.onscroll = function() {
       var right_div2_top = this.scrollTop;
@@ -1061,7 +1060,7 @@ export default {
 }
 .wrapper {
   display: flex;
-  height: 100%;
+  
 }
 .left {
   width: 49px;
@@ -1301,6 +1300,7 @@ td.courseTd {
   height: 113px;
   border-spacing: 10px 2px;
   margin: 5px 0;
+  border-radius:4px;
   border-left: 1px solid white;
   border-right: 1px solid white;
 }

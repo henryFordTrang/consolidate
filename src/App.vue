@@ -22,14 +22,12 @@ export default {
   },
   watch:{
     $route(){
-      //console.log('---------------------------turning to other page----------',this.$route)
       switch(this.$router.animation){
         case 'go':this.tranInout='slide-left';
         break;
         case 'back':this.tranInout='slide-right';
         break;
       }
-
     }
   },
   methods:{
@@ -42,8 +40,7 @@ export default {
             localStorage.rybh = data.data.rybh;
             localStorage.orgId = data.data.orgId;
             localStorage.roleId = data.data.roleId;
-            localStorage.fdyStatus = data.data.fdyStatus;
-            
+            localStorage.fdyStatus = data.data.fdyStatus;            
             if (data.data.userId) {
               localStorage.userId = data.data.userId;
             }
@@ -117,7 +114,7 @@ export default {
               if (localStorage.index_type == "0") { //激活二维码
                 _this.$toast("无权限查看，请联系运维人员");
                 setTimeout(() => {
-                  goOut();
+                  //goOut();
                 }, 2000);
               } else {
                 localStorage.index_informRole = 2;
@@ -127,14 +124,14 @@ export default {
             } else {
               _this.$toast(data.data.msg);
               setTimeout(() => {
-                goOut();
+                //goOut();
               }, 2000);
             }
             _this.$router.replace('/timeTable')
           }else{
              _this.$toast(data.data.msg);
               setTimeout(() => {
-                goOut();
+                //goOut();
               }, 2000);
           }
       })  
