@@ -46,7 +46,7 @@
           <div class="leftUp">{{curMonth}}月</div>
           <div class="leftLow" ref="leftLow" id="leftLow">
             <div class="lli">
-              <table>
+              <table class="tableTspan">
                 <tbody>
                   <tr v-for="(item,index) in series" :key="index">
                     <td class="firstCol" v-if="item.jcdm!='nap'">
@@ -57,7 +57,7 @@
                     </td>
                     <td class="firstCol nap" v-else>
                       <div class="subWra nap">
-                        <div class="class nap">{{item.jcmc}}</div>
+                        <div class="class nap"></div>
                         <!-- <div class="time nap">{{item.jcskkssj.substring(0,5)}}</div> -->
                       </div>
                     </td>
@@ -114,7 +114,7 @@
                     class="courseRow"
                     v-for="(item,index) in series"
                     :key="index"
-                    :class="item.jcdm=='nap'?'dspFlex':''"
+                    
                   >
                     <!-- 星期一 -->
                     <!-- <td class="courseTd" :class="item.jcdm=='nap'?'courseNap':''" :style="monSet[index]&&monSet[index].jc?'background-color:'+colorM.get(monSet[index].kcdm):''"> -->
@@ -147,6 +147,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="napInner" v-if="item.jcdm=='nap'"></div>
                     </td>
                     <!-- 星期二 -->
                     <td class="courseTd" :class="computCc(item.jcdm,tueSet[index])" :rowspan="tueSet[index]&&tueSet[index].jc?computRs(tueSet[index]):1" :style="tueSet[index]&&tueSet[index].jc?'background-color:'+colorM.get(tueSet[index].kcdm):''">
@@ -178,6 +179,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="napInner" v-if="item.jcdm=='nap'"></div>
                     </td>
                     <!-- 星期三 -->
                     <td class="courseTd" :class="computCc(item.jcdm,wenSet[index])" :rowspan="wenSet[index]&&wenSet[index].jc?computRs(wenSet[index]):1" :style="wenSet[index]&&wenSet[index].jc?'background-color:'+colorM.get(wenSet[index].kcdm):''">
@@ -208,6 +210,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="napInner" v-if="item.jcdm=='nap'"></div>
                     </td>
                     <!-- 星期四 -->
                     <td class="courseTd" :class="computCc(item.jcdm,thiSet[index])" :rowspan="thiSet[index]&&thiSet[index].jc?computRs(thiSet[index]):1" :style="thiSet[index]&&thiSet[index].jc?'background-color:'+colorM.get(thiSet[index].kcdm):''">
@@ -238,6 +241,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="napInner" v-if="item.jcdm=='nap'"></div>
                     </td>
                     <!-- 星期五 -->
                     <td class="courseTd" :class="computCc(item.jcdm,friSet[index])" :rowspan="friSet[index]&&friSet[index].jc?computRs(friSet[index]):1" :style="friSet[index]&&friSet[index].jc?'background-color:'+colorM.get(friSet[index].kcdm):''">
@@ -268,6 +272,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="napInner" v-if="item.jcdm=='nap'"></div>
                     </td>
                     <!-- 星期六 -->
                     <td class="courseTd" :class="computCc(item.jcdm,satSet[index])" :rowspan="satSet[index]&&satSet[index].jc?computRs(satSet[index]):1" :style="satSet[index]&&satSet[index].jc?'background-color:'+colorM.get(satSet[index].kcdm):''">
@@ -298,6 +303,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="napInner" v-if="item.jcdm=='nap'"></div>
                     </td>
                     <!-- 星期天 -->
                     <td class="courseTd" :class="computCc(item.jcdm,sunSet[index])" :rowspan="sunSet[index]&&sunSet[index].jc?computRs(sunSet[index]):1" :style="sunSet[index]&&sunSet[index].jc?'background-color:'+colorM.get(sunSet[index].kcdm):''">
@@ -328,6 +334,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="napInner" v-if="item.jcdm=='nap'"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -411,7 +418,7 @@ export default {
       _this.$axios.get(url).then(rsp => {
         if (rsp.data.code == "0") {
           //code should equal to 0
-          if (rsp.data.jcInfo.code != "0") {
+          if (rsp.data.jcInfo.code == "0") {
             //length should more than 0
             //if (rsp.data.jcInfo.data && rsp.data.jcInfo.data.length > 0) {
               var temp = [];
@@ -512,7 +519,7 @@ export default {
             _this.$toast(rsp.data.jcInfo.msg);
           }
           //code should equal 0
-          if (rsp.data.kcInfo.code != "0") {
+          if (rsp.data.kcInfo.code == "0") {
             //length should more than 0
             //if (rsp.data.kcInfo.data && rsp.data.kcInfo.data.length > 0) {
               _this.courseList = rsp.data.kcInfo.data;
@@ -521,9 +528,9 @@ export default {
                 {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"SX","skjs":"10086110","skbj":"1101", "skjsxm":"小李老师","skbjmc":"一年五班","jc":"2","jxrwid":40,"kcmc":"数学","skcddm":"1011"},\
                 {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"3","jxrwid":41,"kcmc":"英语","skcddm":"1011"},\
                 {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"4","jxrwid":2752,"kcmc":"化学","skcddm":"1011"},\
-                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"DL1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"HX2","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"5","jxrwid":2750,"kcmc":"地理","skcddm":"1011"},\
                 {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"LS","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"6","jxrwid":30,"kcmc":"历史","skcddm":"1011"},\
-                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},\
+                {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"SW1","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"7","jxrwid":2749,"kcmc":"生物","skcddm":"1011"},\
                 {"skcdmc":"一年五班","skrq":"2019-08-26","kcdm":"YW","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"8","jxrwid":39,"kcmc":"语文","skcddm":"1011"},\
                 {"skcdmc":"一年五班","skrq":"2019-08-27",\
                 "kcdm":"YY","skjs":"10086110","skbj":"1101","skjsxm":"小李老师","skbjmc":"一年五班","jc":"1","jxrwid":41,"kcmc":"英语","skcddm":"1011"},\
@@ -720,7 +727,7 @@ export default {
                     //_this.satSet.push(courseItem);
                     break;
                 }
-              });
+              });                
               //去重
               _this.duplicate(_this.monSet);
               _this.duplicate(_this.tueSet);
@@ -728,7 +735,7 @@ export default {
               _this.duplicate(_this.thiSet);
                _this.duplicate(_this.friSet);
               _this.duplicate(_this.satSet);
-              _this.duplicate(_this.sunSet);            
+              _this.duplicate(_this.sunSet);          
               //假如午休
             // } else {
             //   _this.$toast("没有课程信息");
@@ -844,7 +851,6 @@ export default {
                       count = 0;
                       repeat1=[];
                       return;
-
                     }
                   }
 
@@ -856,7 +862,7 @@ export default {
                      repeat1.forEach((reItem,reIndex)=>{
                        //console.log(list[reItem].jc,'---',list[reItem].kcmc)
                        jc+=reItem+','
-                       if(reIndex>0){
+                       if(reIndex>0&&list[reItem]&&list[reItem].jc){
                          list[reItem].conceal=true;
                        }
                      })
@@ -868,7 +874,7 @@ export default {
                     var jc='';
                      repeat1.forEach((reItem,reIndex)=>{
                         jc+=reItem+','
-                        if(reIndex>0){
+                        if(reIndex>0&&list[reItem]&&list[reItem].jc){
                           list[reItem].conceal=true;
                         }
                      })
@@ -1195,12 +1201,12 @@ export default {
 .fl {
   float: left;
 }
-
+table.tableTspan,
 table.tableDate,
 table.courseTable {
   table-layout: fixed;
   border-collapse: separate;
-  border-spacing: 1px 2px;
+  border-spacing: 1px 6px;
 }
 .courseWra {
   width: 457px;
@@ -1285,8 +1291,6 @@ td.nap {
   display: table-cell !important;
   width: 43px;
   padding: 1px 0;
-  border-top: 5px solid white;
-  border-bottom: 5px solid white;
 }
 td.firstCol{
   display: inline-block;
@@ -1317,6 +1321,10 @@ td.firstCol .subWra .class{
   font-weight:bold;
   color:rgba(51,51,51,1);
   text-align: center;
+}
+td.firstCol .subWra .nap{
+  background-color:rgba(245,245,245,1);
+  width:50px;
 }
 td.firstCol .subWra .time {
   text-align: center;
@@ -1356,4 +1364,10 @@ thead td {
 .conceal {
     display: none ! important;
   }
+.napInner{
+  height:10px;
+  width:calc(100% + 6px);
+  margin-left:-3px;
+  background-color:rgba(245,245,245,1);;
+}
 </style>
