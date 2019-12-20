@@ -1,229 +1,50 @@
 <template>
-  <external>
-    <van-nav-bar
-      title="测试"
-      left-text="返回"
-      right-text="按钮"
-      left-arrow
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
-    />
-    <scroller>
-      <div class="container-fluid">
-        <div id="left_div">
-          <div id="left_div1">
-            <table id="left_table1" class="table table-bordered">
-              <tr>
-                <th>不动</th>
-              </tr>
-            </table>
-          </div>
-          <div id="left_div2">
-            <table id="left_table2" class="table table-bordered"></table>
-          </div>
-        </div>
-        <div id="right_div">
-          <div id="right_div1">
-            <div id="right_divx">
-              <table id="right_table1" class="table table-bordered">
-                <tr>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                  <th>表头</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div id="right_div2" @touchmove.stop="getScrollParam($event)">
-            <table id="right_table2" class="table table-bordered"></table>
-          </div>
-        </div>
-      </div>
-    </scroller>
-  </external>
+    <div id="app">
+        <canvas id="myCanvas" width="375" height="500"></canvas>
+    </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      searchType: "",
-      searchValue: "",
-      startDate: "",
-      startDate: new Date().Format("yyyy-MM-dd"),
-      endDate: new Date().Format("yyyy-MM-dd")
-    };
-  },
-  methods: {
-    loadInfo() {
-      var _this = this;
-      var url =
-        _this.$util.axiosUrl() +
-        "/api/phoneKcb/queryKcb?orgId=" +
-        localStorage.orgId +
-        "&searchType=1&searchValue=1101&startDate=" +
-        _this.startDate +
-        "&endDate=" +
-        _this.endDate;
-      _this.$axios.get(url).then(rsp => {
-        console.log(rsp);
-      });
-    },
-    getScrollParam(e) {
-      //console.log(e)
-    },
-    onClickLeft() {
-      cxMethod.test();
-      cxMethod.exit();
-    },
-    onClickRight() {}
-  },
-  mounted() {
-    var _this = this;
-    _this.loadInfo();
-    var contentH =
-      $(window).height() -
-      $(".van-nav-bar").height() -
-      $(".van-nav-bar").offset().top +
-      "px";
-    for (var i = 0; i < 24; i++) {
-      $("#left_table2").append("<tr><th>首列</th></tr>");
-      $("#right_table2").append(
-        "<tr><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td><td>" +
-          i +
-          "</td></tr>"
-      );
+class ball{
+    constructor(color,x,y){
+        this.color=color;
+        this.x=x;
+        this.y=y;
+        this.r=40;
     }
-    $(".page-scroll").css("height", contentH);
-    var right_div2 = document.getElementById("right_div2");
-    right_div2.onscroll = function() {
-      console.log(888)
-      var right_div2_top = this.scrollTop;
-      var right_div2_left = this.scrollLeft;
-      document.getElementById("left_div2").scrollTop = right_div2_top;
-      document.getElementById("right_div1").scrollLeft = right_div2_left;
-    };
-  }
-};
+
+    render1(ball){
+           var c=document.getElementById("myCanvas");
+           var ctx=c.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+            ctx.fillStyle=ball.color;
+            ctx.fill();
+            ctx.stroke();
+    }
+}
+export default {
+    methods:{
+        drawBall(){
+        var ball0=new ball('yellow',100,100);
+        var ball1=new ball('orange',100,210);
+        var ball2=new ball('yellowgreen',100,320);
+        ball0.render1(ball0);
+        ball0.render1(ball1);
+        ball0.render1(ball2);
+
+        },
+        repeat(){
+            var xx='henryFord';
+            console.log(xx.repeat(10),xx.includes('r'),xx.padEnd(10,'i'),xx.startsWith('i m'))
+        }
+    },
+    mounted(){
+        //this.drawBall()
+        this.repeat()
+        this.$route.meta.KeepAlive=true;
+    }
+}
 </script>
-<style scoped>
-.page-scroll /deep/ .page-scroll__content {
-  overflow: hidden;
-}
-/* .wrapper{
-  height:100%;
-}
-.wrapper .left{
-  width:49px;
-  height:621px;
-  display:inline-block;
-  float:left;
-}
-.wrapper .left .leftUp{
-  width:49px;
-  height:62px;
-  overflow:hidden;
-}
-.wrapper .left .leftLow{
-  width:49px;
-  height:1000px;
-  background-color:orange;
-  overflow-y:auto;
-}
-.wrapper .right{
-  width:326px;
-  height:621px;
-  display:inline-block;
-  float:left;
-}
-.wrapper .right .rightUp{
-  width:500px;
-  height:62px;
-  overflow:hidden;
-}
-.wrapper .right .rightLow{
-  width:500px;
-  height:1000px;
-  overflow:auto;
-  background-color:yellowgreen;
-} */
-#left_div {
-  width: 49px;
-  float: left;
-}
-#left_div1 {
-  width: 100%;
-}
-#left_div2 {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-}
-#left_table1 th {
-  background: #e9f8ff;
-  text-align: center;
-}
-#left_table2 th {
-  text-align: center;
-}
+<style lang="less" scoped>
 
-#right_div {
-  float: left;
-  width: 306px;
-}
-#right_div1 {
-  width: 100%;
-  overflow: hidden;
-}
-#right_divx {
-  width: 900px;
-}
-#right_div2 {
-  width: 100%;
-  height: 400px;
-  overflow: auto;
-}
-#right_table1 {
-  width: 880px;
-}
-#right_table2 {
-  /**width和max-width一起写，手机浏览器打开也能固定长度**/
-  width: 880px;
-  max-width: 880px;
-  white-space: nowrap;
-}
-#right_table1 th {
-  background: #e9f8ff;
-  text-align: center;
-  width: 10%;
-}
-#right_table2 td {
-  width: 10%;
-  text-align: center;
-}
 </style>
-

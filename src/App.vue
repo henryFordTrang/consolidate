@@ -138,7 +138,7 @@ export default {
     }
   },
   created(){
-    this.userInfo();
+    //this.userInfo();
     //this.$router.replace('/timeTable')
     //
   }

@@ -23,7 +23,7 @@ module.exports = {
 
     proxy           : {
       [`^${devPath.name}`]: {
-        target      : 'http://192.168.10.3:8080',
+        target      : 'http://192.168.10.54:8080',
         ws          : true,
         changeOrigin: true
       }

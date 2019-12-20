@@ -26,6 +26,13 @@ export default new Router({
         meta:{
             KeepAlive:false
         }
+       },
+       {
+        path:'/*',
+        component:test,
+        meta:{
+            KeepAlive:false
+        }
        }
     ]
 })
