@@ -7,13 +7,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <title>consolidate1</title>
+  <style>
+  body{
+    padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  </style>
 </head>
-<script src="./static/js/jquery-1.10.0.min.js"></script>
+<% for( var i in htmlWebpackPlugin.options.cdnJs ) { %>
+  <script src="<%= htmlWebpackPlugin.options.cdnJs[i] %>"></script>
+  <% } %>
+<!-- <script src="./static/js/jquery-1.10.0.min.js"></script>
 <script src="./static/js/cxBridge.js"></script>
 <script src="./static/js/cxPrototype.js"></script>
 <script src="./static/js/test.js"></script>
 <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
-<script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"></script>
+<script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"></script> -->
 <body>
   <noscript>
     <strong>We're sorry but consolidate1 doesn't work properly without JavaScript enabled. Please enable it to
@@ -54,7 +63,7 @@
         }
   </script>
   <script>
-    new VConsole();
+    //new VConsole();
   </script>
 </body>
 

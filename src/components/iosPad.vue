@@ -3,19 +3,19 @@
 </template>
 <script>
 export default {
-    name:'iosPad',
-    data() {
-      return {
-        show  : false,
-        height: 0
-      }
-    },
-    created() {
-      let u = navigator.userAgent
-      if (!(/iphone|ipad|ipod/i.test(u))) return false
-      this.show = true
-      this.height = process.env.NODE_ENV === 'development' ? '20px' : (window.screen.height - window.screen.availHeight) + 'px'
+  name: 'iosPad',
+  data () {
+    return {
+      show: false,
+      height: 0
     }
+  },
+  created () {
+    const u = navigator.userAgent
+    if (!(/iphone|ipad|ipod/i.test(u))) return false
+    this.show = true
+    this.height = process.env.NODE_ENV === 'development' ? '20px' : (window.screen.height - window.screen.availHeight) + 'px'
+  }
 }
 </script>
 <style lang="less">

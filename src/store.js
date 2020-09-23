@@ -1,17 +1,17 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex);
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
 export default new Vuex.Store({
-    state:{
-        ifIphone:0,
-    },
-    Getters:{
-        ifIphone:state=>state.ifIphone,
-    },
-    Mutations:{
-        ifIphone:(state,value)=>state.ifIphone=value,
-    },
-    actions:{
+  state: {
+    ifIphone: 0
+  },
+  Getters: {
+    ifIphone: state => state.ifIphone
+  },
+  Mutations: {
+    ifIphone: (state, value) => state.ifIphone = value
+  },
+  actions: {
 
-    }
+  }
 })
