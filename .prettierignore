@@ -1,0 +1,5 @@
+**/*.svg
+package.json
+yarn.lock
+output.js
+src

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+[v-cloak] {
+  display: none;
+}
+
+.page-padding {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.touch-scrolling {
+  /* 使移动端滚动流畅 */
+  -webkit-overflow-scrolling: touch;
+}
+
+.clear-both {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.clear-content {
+  &::before,
+  &::after {
+    content: '' !important;
+  }
+}
+
+.gray-bg {
+  background-color: @regular-background;
+}
+
+.white-bg {
+  background-color: @white;
+}
